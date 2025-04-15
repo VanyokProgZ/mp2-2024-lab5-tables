@@ -244,6 +244,39 @@ int main()
 				Data<std::string, Polinome<double>> ins_d(q, a);
 				hash_table.insert(ins_d);
 				redBlackTree.insert(ins_d);
+				std::cout << "\nType something to continue\n";
+				std::cin >> q;
+				CLS;
+			}
+			else if (q == "3") {
+				std::cout << "Type polinom's name: ";
+				std::cin >> q;
+				hash_table.Delete(q);
+				redBlackTree.Delete(q);
+				std::cout << "\nType something to continue\n";
+				std::cin >> q;
+				CLS;
+			}
+			else if (q == "4") {
+				std::cout << "Type polinom's name: ";
+				std::cin >> q;
+				auto hash_res = hash_table.find(q);
+				auto rbtree_res = redBlackTree.find_vertex_by_key(q);
+				if (rbtree_res != nullptr) {
+					std::cout << "Found: ";
+					std::cout << rbtree_res->data.getData() << std::endl;
+				}
+				else {
+					std::cout << "didn't find anything!" << std::endl;
+				}
+				std::cout << "\nType something to continue\n";
+				std::cin >> q;
+				CLS;
+			}
+			else if (q == "exit") {
+				CLS;
+				std::cout << "Goodbye!;)" << std::endl;
+				return 0;
 			}
 		}
 	}
