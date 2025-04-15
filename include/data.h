@@ -22,8 +22,7 @@ public:
 
     data_T& getData() const{ return data; }
     data_T& getData() { return data; }
-    void setData(const data_T& right_)const { data = right_; }
-    void setKey(const key_T& right_) const{ key = right_; }
+    void setKey(const key_T& right_) { key = right_; }
     key_T getKey()const { return key; }
 
     Data swap(Data& right_) {
