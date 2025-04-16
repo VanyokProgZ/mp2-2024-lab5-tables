@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "vector.h"
+#include "data.h"
 
 constexpr unsigned short BLOCK_SIZE = 64;
 typedef uint8_t block[BLOCK_SIZE];
