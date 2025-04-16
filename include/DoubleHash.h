@@ -439,6 +439,7 @@ public:
         }
     }
 
+
     void insert(const Data<std::string, val_>& d) {
         size_t pos = 0;
         std::pair<size_t, size_t> coefs = Double_hash_coeff(d.getKey());
