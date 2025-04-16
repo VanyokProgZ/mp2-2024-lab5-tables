@@ -487,7 +487,7 @@ public:
         if (!deleted_color) {
             if (!x) {
                 LOG_++;
-                x = new Vertex(Data<key_t, val_>(0, 0), 0, nullptr, nullptr, fix_c);
+                x = new Vertex(Data<key_t, val_>(key_t(), val_()), 0, nullptr, nullptr, fix_c);
                 LOG_++;
                 if (fix_c_p) {
                     fix_c->right = x;

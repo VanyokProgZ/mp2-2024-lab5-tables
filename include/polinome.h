@@ -182,6 +182,7 @@ public:
 	void SORT() { polinome.merge_sort(); }
 
 	void make_uniq() {
+		if (polinome.size() == 0 || begin() == last())return;
 		SORT();
 		Polinome<val_> temp(0);
 		if (!size())return;

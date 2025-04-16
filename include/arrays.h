@@ -2,7 +2,6 @@
 #include "vector.h"
 #include "data.h"
 
-
 template<typename val_>
 class unsorted_array {
 	size_t LOG;
@@ -11,7 +10,7 @@ public:
 	void resetLog() { LOG = 0; }
 	size_t Log() { return LOG; }
 	unsorted_array() :data(),LOG(0) {};
-	void insert(const Data<std::string, val_>& v) { 
+	void insert(const Data<std::string, val_>& v) {
 		auto fr = find_by_name(v.getKey());
 		if (!fr.first)
 			data.push_back(v);
@@ -35,6 +34,7 @@ public:
 		throw std::logic_error("Cant find element to delete from unsorted array");
 	}
 	std::pair<bool, Data<std::string, val_>> find_by_name(const std::string& name) {
+		LOG++;
 		for (size_t i = 0; i < data.size(); i++) {
 			LOG += 2;
 			if (data[i].getKey() == name) {
@@ -50,8 +50,6 @@ public:
 };
 
 
-
-
 template<class val_>
 class sorted_array {
 	size_t LOG;
@@ -65,7 +63,7 @@ public:
 		while (l < r) {
 			LOG += 2;
 			mid = (l + r) / 2;
-			if (data[mid] < name) {
+			if (data[mid].getKey() < name) {
 				l = mid + 1;
 			}
 			else {
@@ -74,10 +72,10 @@ public:
 		}
 		return l;
 	}
-	std::pair<bool, Data<std::string, val_>> find_by_name(const std::string& name) {
+	std::pair<long long, Data<std::string, val_>> find_by_name(const std::string& name) {
 		auto ind = lower_bound(name);
 		LOG++;
-		if (data[ind].getKey() == name) {
+		if (ind<size() && data[ind].getKey() == name) {
 			return { ind, data[ind] };
 		}
 		else {
@@ -85,17 +83,18 @@ public:
 		}
 	}
 	void insert(const Data<std::string, val_>& v) {
-		auto ind = lower_bound(v->getKey());
+		auto ind = lower_bound(v.getKey());
 		LOG++;
-		if (data[ind].getKey() == v->getKey()) {
+		if (ind < size() && data[ind].getKey() == v.getKey()) {
 			throw std::logic_error("Element with that key already exists");
 		}
 		else {
-			data.push_back(data.back());
-			for (size_t i = data.size() - 2; i > ind; i--) {
+			data.push_back(v);
+			for (size_t i = data.size() - 1; i > ind; i--) {
 				LOG += 1;
 				data[i] = data[i - 1];
 			}
+			data[ind] = v;
 		}
 	}
 	void Delete(const std::string& v) {
